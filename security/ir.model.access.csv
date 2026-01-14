@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_approval_category_user,approval.category.user,model_approval_category,group_approval_user,1,1,1,0
+access_approval_category_manager,approval.category.manager,model_approval_category,group_approval_manager,1,1,1,1
+access_approval_request_user,approval.request.user,model_approval_request,group_approval_user,1,1,1,0
+access_approval_request_manager,approval.request.manager,model_approval_request,group_approval_manager,1,1,1,1
+access_approval_approver_user,approval.approver.user,model_approval_approver,group_approval_user,1,1,0,0
+access_approval_approver_manager,approval.approver.manager,model_approval_approver,group_approval_manager,1,1,1,1
+access_approval_payment_method_user,approval.payment.method.user,model_approval_payment_method,group_approval_user,1,0,0,0
+access_approval_payment_method_manager,approval.payment.method.manager,model_approval_payment_method,group_approval_manager,1,1,1,1
+access_approval_refuse_wizard_user,approval.refuse.wizard.user,model_approval_refuse_wizard,group_approval_user,1,1,1,1

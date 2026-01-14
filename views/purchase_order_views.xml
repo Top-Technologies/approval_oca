@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_inherit_approval" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.approval</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_create_approval_request" 
+                        string="Request Approval" 
+                        type="object" 
+                        class="oe_highlight" 
+                        invisible="state not in ['draft', 'sent'] or approval_status == 'approved'"/>
+            </header>
+            <div name="button_box" position="inside">
+                <button name="action_view_approval_requests" 
+                        type="object" 
+                        class="oe_stat_button" 
+                        icon="fa-check-square-o" 
+                        invisible="approval_request_count == 0">
+                    <field name="approval_request_count" widget="statinfo" string="Approvals"/>
+                </button>
+            </div>
+            <!-- <xpath expr="//field[@name='date_order']" position="after">
+                <field name="approval_status" widget="badge" 
+                       decoration-success="approval_status == 'approved'" 
+                       decoration-info="approval_status == 'to_approve'" 
+                       decoration-danger="approval_status == 'refused'"
+                       invisible="approval_status == 'no'"/>
+            </xpath> -->
+        </field>
+    </record>
+</odoo>

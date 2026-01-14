@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_approval_root" name="Approvals" sequence="10" web_icon="custom_approval,static/description/icon.png"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_approval_request_my" name="My Requests" parent="menu_approval_root" action="action_approval_request_my" sequence="10"/>
+    <menuitem id="menu_approval_request_to_approve" name="To Approve" parent="menu_approval_root" action="action_approval_request_to_approve" sequence="20"/>
+    <menuitem id="menu_approval_request_all" name="All Requests" parent="menu_approval_root" action="action_approval_request" sequence="30"/>
+    
+    <menuitem id="menu_approval_analysis" name="Reporting" parent="menu_approval_root" action="action_approval_request_dashboard" sequence="40" groups="group_approval_manager"/>
+    
+    <menuitem id="menu_approval_config" name="Configuration" parent="menu_approval_root" sequence="100" groups="group_approval_manager"/>
+    <menuitem id="menu_approval_category_config" name="Approval Types" parent="menu_approval_config" action="action_approval_types_config" sequence="10"/>
+</odoo>

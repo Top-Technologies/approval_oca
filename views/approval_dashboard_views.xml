@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Approval Request Graph View -->
+    <record id="view_approval_request_graph" model="ir.ui.view">
+        <field name="name">approval.request.graph</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <graph string="Approval Requests" sample="1">
+                <field name="category_id"/>
+                <field name="state" type="row"/>
+                <field name="amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Approval Request Pivot View -->
+    <record id="view_approval_request_pivot" model="ir.ui.view">
+        <field name="name">approval.request.pivot</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <pivot string="Approval Requests" sample="1">
+                <field name="date" type="row"/>
+                <field name="category_id" type="col"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Add Graph and Pivot to Action -->
+    <record id="action_approval_request_dashboard" model="ir.actions.act_window">
+        <field name="name">Analysis</field>
+        <field name="res_model">approval.request</field>
+        <field name="view_mode">graph,pivot,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No data to analyze
+            </p>
+            <p>
+                Create approval requests to generate data for analysis.
+            </p>
+        </field>
+    </record>
+</odoo>

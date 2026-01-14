@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Nuclear Cleanup: Explicitly delete old, broken templates if they exist -->
+    <delete model="mail.template" search="[('model', '=', 'approval.request'), ('name', 'not ilike', '(New)')]"/>
+
+    <data noupdate="0">
+        <!-- Email Template for Request Submission (V2) -->
+        <record id="email_template_approval_request_submitted_v2" model="mail.template">
+            <field name="name">Approval Request: Submitted (New)</field>
+            <field name="model_id" ref="model_approval_request"/>
+            <field name="subject">Approval Request: {{ object.name }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Hello,
+                        <br/><br/>
+                        A new approval request <strong>{{ object.name }}</strong> has been submitted by <strong>{{ object.request_owner_id.name }}</strong>.
+                        <br/><br/>
+                        Category: {{ object.category_id.name }}<br/>
+                        Date: {{ object.date }}<br/>
+                        <t t-if="object.amount">
+                            Amount: {{ object.amount }} {{ object.currency_id.name }}<br/>
+                        </t>
+                        <br/><br/>
+                        Please review and take action.
+                        <br/><br/>
+                        Regards,
+                        <br/>
+                        {{ object.company_id.name }}
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <!-- Email Template for Request Approved (V2) -->
+        <record id="email_template_approval_request_approved_v2" model="mail.template">
+            <field name="name">Approval Request: Approved (New)</field>
+            <field name="model_id" ref="model_approval_request"/>
+            <field name="subject">Approval Request Approved: {{ object.name }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Hello {{ object.request_owner_id.name }},
+                        <br/><br/>
+                        Your approval request <strong>{{ object.name }}</strong> has been <strong>Approved</strong>.
+                        <br/><br/>
+                        Regards,
+                        <br/>
+                        {{ object.company_id.name }}
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <!-- Email Template for Request Refused (V2) -->
+        <record id="email_template_approval_request_refused_v2" model="mail.template">
+            <field name="name">Approval Request: Refused (New)</field>
+            <field name="model_id" ref="model_approval_request"/>
+            <field name="subject">Approval Request Refused: {{ object.name }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Hello {{ object.request_owner_id.name }},
+                        <br/><br/>
+                        Your approval request <strong>{{ object.name }}</strong> has been <strong>Refused</strong>.
+                        <br/>
+                        Reason: {{ object.reason or 'No reason provided' }}
+                        <br/><br/>
+                        Regards,
+                        <br/>
+                        {{ object.company_id.name }}
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>
